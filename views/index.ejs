@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <form action="/entry" method="post">
+      <p>タイトル</p>
+      <input type="text" name="title" />
+      <p>本文</p>
+      <textarea name="content" cols="30" rows="10"></textarea>
+      <input type="submit" />
+    </form>
+    <hr>
+    <% if (entries) { %>
+      <% for (let e of entries) { %>
+        <p>タイトル: <%= e.title %></p>
+        <p>本文:<br><%= e.content %></p>
+        <p>投稿日時: <%= e.createdAt %></p>
+        <hr>
+      <% } %>
+    <% } %>
+  </body>
+</html>
