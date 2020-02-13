@@ -1,0 +1,22 @@
+{
+  "name": "express-simple-diary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/odmishien/express-simple-diary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/odmishien/express-simple-diary/issues"
+  },
+  "homepage": "https://github.com/odmishien/express-simple-diary#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
