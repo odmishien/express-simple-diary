@@ -26,7 +26,6 @@ app.get("/", (req, res) => {
   });
 });
 app.post("/entry", (req, res) => {
-  entries = [];
   let title = req.body.title;
   let content = req.body.content;
   let createdAt = new Date().toString;
