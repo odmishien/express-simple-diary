@@ -6,7 +6,7 @@ const db = new sqlite3.Database("diary");
 
 // init database
 db.serialize(() => {
-  db.run("CREATE TABLE IF NOT EXISTS entry (title, content, createdAt)");
+  db.run("CREATE TABLE IF NOT EXISTS entries (title, content, createdAt)");
 });
 
 app.use(express.static("views"));
@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 // router
 app.get("/", (req, res) => {
   db.serialize(() => {
-    db.all("select * from entry", (err, rows) => {
+    db.all("select * from entries", (err, rows) => {
       if (!err) {
         res.render("index", { entries: rows });
       } else {
@@ -25,25 +25,21 @@ app.get("/", (req, res) => {
     });
   });
 });
+
 app.post("/entry", (req, res) => {
   let title = req.body.title;
   let content = req.body.content;
   let createdAt = new Date().toString;
-  let entry = {
-    title: title,
-    content: content,
-    createdAt: createdAt
-  };
   db.serialize(() => {
     db.run(
-      "insert into entry (title, content, createdAt) values ($title,$content,$createdAt)",
+      "insert into entries (title, content, createdAt) values ($title,$content,$createdAt)",
       {
-        $title: entry.title,
-        $content: entry.content,
-        $cretedAt: entry.$cretedAt
+        $title: title,
+        $content: content,
+        $createdAt: createdAt
       }
     );
-    db.all("select * from entry", (err, rows) => {
+    db.all("select * from entries", (err, rows) => {
       if (!err) {
         res.render("index", { entries: rows });
       } else {
