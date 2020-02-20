@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 app.post("/entry", (req, res) => {
   let title = req.body.title;
   let content = req.body.content;
-  let createdAt = new Date().toString;
+  let createdAt = new Date().toString();
   db.serialize(() => {
     db.run(
       "insert into entries (title, content, createdAt) values ($title,$content,$createdAt)",
